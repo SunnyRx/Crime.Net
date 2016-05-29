@@ -1,0 +1,74 @@
+{
+	"work":
+	[
+		{
+			"process" :
+			[
+				{
+					"number" : 0,
+					"requirement" : "null",
+					"requirement-value" : 0,
+					"true-text" : "这是一段测试的描述文字",
+					"false-text" : "",
+					"select" :
+					[
+						{
+							"text" : "选项1",
+							"to" : 1
+						}
+						{
+							"text" : "选项2",
+							"to" : 2
+						}
+						{
+							"text" : "选项3",
+							"to" : 3
+						}
+					]
+				}
+				{
+					"number" : 1,
+					"requirement" : "null",
+					"requirement-value" : 0,
+					"true-text" : "这是选项1",
+					"false-text" : "",
+					"select" :
+					[
+						{
+							"text" : "重新来过",
+							"to" : 0
+						}
+					]
+				}
+				{
+					"number" : 2,
+					"requirement" : "null",
+					"requirement-value" : 0,
+					"true-text" : "这是选项2",
+					"false-text" : "",
+					"select" :
+					[
+						{
+							"text" : "重新来过",
+							"to" : 0
+						}
+					]
+				}
+				{
+					"number" : 3,
+					"requirement" : "null",
+					"requirement-value" : 0,
+					"true-text" : "这是选项3",
+					"false-text" : "",
+					"select" :
+					[
+						{
+							"text" : "重新来过",
+							"to" : 3
+						}
+					]
+				}
+			]
+		}
+	]
+}

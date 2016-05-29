@@ -668,9 +668,10 @@ namespace SimpleJSON
                 return Deserialize (R);
             }
         }
-
+        /*
         public static JSONNode LoadFromFile (string aFileName)
         {
+            
             #if USE_FileIO
             using (var F = System.IO.File.OpenRead (aFileName)) {
                 return LoadFromStream (F);
@@ -678,8 +679,9 @@ namespace SimpleJSON
             #else
             throw new Exception ("Can't use File IO stuff in webplayer");
             #endif
-        }
 
+        }
+        */
         public static JSONNode LoadFromBase64 (string aBase64)
         {
             var tmp = System.Convert.FromBase64String (aBase64);

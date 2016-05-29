@@ -1,0 +1,69 @@
+{
+	"process" :
+	[
+		{
+			"number" : 0,
+			"requirement" : "null",
+			"requirement-value" : 0,
+			"true-text" : "你独自一人来到魔王城城门下，可是门前空无一人，连守卫都没有。",
+			"false-text" : "",
+			"select" :
+			[
+				{
+					"text" : "推开大门",
+					"to" : 1
+				}
+				{
+					"text" : "寻找其它小路",
+					"to" : 2
+				}
+				{
+					"text" : "在远处再观望一会",
+					"to" : 3
+				}
+			]
+		}
+		{
+			"number" : 1,
+			"requirement" : "power",
+			"requirement-value" : 1,
+			"true-text" : "你推开了大门，但剧本并不是这样写的",
+			"false-text" : "大门关的很紧，你无法推开",
+			"select" :
+			[
+				{
+					"text" : "重新来过",
+					"to" : 0
+				}
+			]
+		}
+		{
+			"number" : 2,
+			"requirement" : "null",
+			"requirement-value" : 0,
+			"true-text" : "你并没发现周围有小路",
+			"false-text" : "",
+			"select" :
+			[
+				{
+					"text" : "重新来过",
+					"to" : 0
+				}
+			]
+		}
+		{
+			"number" : 3,
+			"requirement" : "null",
+			"requirement-value" : 0,
+			"true-text" : "你回头发现原来的路不见了",
+			"false-text" : "",
+			"select" :
+			[
+				{
+					"text" : "重新来过",
+					"to" : 0
+				}
+			]
+		}
+	]
+}

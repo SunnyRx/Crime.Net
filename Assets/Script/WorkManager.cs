@@ -18,7 +18,13 @@ public struct OneSelect
 public class WorkManager : MonoBehaviour {
 
     public Text mainText;
- 
+    private int textNumber = 0;
+
+    /*
+    public GameObject mainTextPanel;
+    private int textCurrentY = -10;
+    */
+
     public Button actionButton;   //執行動作列表按鈕
     public Button leaveButton;    //離開動作按鈕
     private bool isNeedShowAction = false;  //是否需要顯示執行動作列表按鈕
@@ -26,11 +32,15 @@ public class WorkManager : MonoBehaviour {
 
     public GameObject panel;    //储存选项的容器
     public GameObject theSelect;    //选项物件
+    public GameObject Description;  //描述文字物件
 
     public OneSelect[] actionSelectList;
     public OneSelect[] leaveSelectList;
     OneSelect[] currentSelectList;
     List<GameObject> currentToggle;
+
+    private bool isFirstStart = true;
+    private int updateNumber = 0;
 
     public static WorkManager instance;
 
@@ -62,28 +72,62 @@ public class WorkManager : MonoBehaviour {
             leaveSelectList[i].text = "你离开了现场";
             leaveSelectList[i].to = 0;
         }
-
-        ScriptReader.GetInstance().setWorkManger(this);
+            
         ScriptReader.GetInstance().LoadJsonFile();
         ScriptReader.GetInstance().JumpTo(0);
+
     }
 
 	// Update is called once per frame
 	void Update () {
-    
+        //Scroll View方法，因为Unity的BUG舍弃
+        /*
+        if (isFirstStart && updateNumber >= 2)
+        {
+            ScriptReader.GetInstance().JumpTo(0);
+            isFirstStart = false;
+        }
+        else
+        {
+            if (isFirstStart)
+                updateNumber++;
+        }
+        */
 	}
 
     public void addText(string text)
     {
-        mainText.text += '\n';
+        mainText.text += "\n";
         mainText.text += text;
+        //显示输出行数，超过则舍弃第一行
+        if (textNumber < 18)
+        {
+            textNumber++;
+        }
+        else
+        {
+            int tmpInt = mainText.text.IndexOf('\n');
+            mainText.text = mainText.text.Substring(tmpInt + 1);
+        }
+        //Scroll View方法，因为Unity的BUG舍弃
+        /*
+        GameObject tmpText = Instantiate(Description) as GameObject;
+        tmpText.transform.SetParent(mainTextPanel.transform);
+        tmpText.transform.localPosition = new Vector3(10,textCurrentY + 160,0f);
+        tmpText.transform.localScale = new Vector3(1f,1f,1f);
+        tmpText.GetComponent<Text>().text = text;
+
+        textCurrentY -= (int)tmpText.GetComponent<RectTransform>().sizeDelta[1];
+        if (System.Math.Abs(textCurrentY) >= mainTextPanel.GetComponent<RectTransform>().sizeDelta[1])
+        {
+            mainTextPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(mainTextPanel.GetComponent<RectTransform>().sizeDelta[0], tmpText.GetComponent<RectTransform>().sizeDelta[1] + System.Math.Abs(tmpText.transform.position.y));
+        }
+        */
     }
 
     public void nextText()
     {
         addText("测试");
-
-        //showSelect();
         GetCurrentSelect();
     }
 
