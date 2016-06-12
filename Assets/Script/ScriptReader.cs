@@ -45,25 +45,6 @@ public class ScriptReader {
 
     public void LoadJsonFile()
     {
-        /*
-        ACnormal testNormal = new ACnormal(0, "两头牛疯狂往你冲撞过来。");
-        testNormal.AddSelect("往左闪避", 1);
-        testNormal.AddSelect("往右闪避", 2);
-        testNormal.AddSelect("往后闪避", 3);
-        scriptList.Add(testNormal);
-
-        ACnormal testNormal2 = new ACnormal(1, "两头牛突然分开往左右冲撞，你被撞到了");
-        testNormal2.AddSelect("重头来过", 0);
-        scriptList.Add(testNormal2);
-
-        ACnormal testNormal3 = new ACnormal(2, "两头牛突然分开往左右冲撞，你被撞到了");
-        testNormal3.AddSelect("重头来过", 0);
-        scriptList.Add(testNormal3);
-
-        ACnormal testNormal4 = new ACnormal(3, "两头牛突然分开往左右冲撞，你躲过一劫");
-        testNormal4.AddSelect("重头来过", 0);
-        scriptList.Add(testNormal4);
-        */
         //打开Json文件
         var filepath = Path.Combine(Application.streamingAssetsPath, "process.json");
         FileInfo finfo = new FileInfo(filepath);
@@ -99,6 +80,7 @@ public class ScriptReader {
 
     }
 
+    //顺序执行脚本
     public void nextScript()
     {
         ActionCommand cmd = scriptList[currentCommandIndex++];
@@ -113,9 +95,11 @@ public class ScriptReader {
         }
     }
 
+    //执行对应序号的脚本
     public void JumpTo(int index)
     {
         ActionCommand cmd = scriptList[index];
+        //根据单条脚本的类型执行对应的方法
         switch (cmd.type)
         {
             case ActionCommandType.NormalAction:

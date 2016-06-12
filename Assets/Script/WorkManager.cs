@@ -39,14 +39,14 @@ public class WorkManager : MonoBehaviour {
     OneSelect[] currentSelectList;
     List<GameObject> currentToggle;
 
-    private bool isFirstStart = true;
-    private int updateNumber = 0;
+   // private bool isFirstStart = true;
+    //private int updateNumber = 0;
 
     public static WorkManager instance;
 
     void Awake()
     {
-        mainText.text = "任务开始";
+        mainText.text = "欢迎 " + SystemController.GetInstance().getMainPlayer().name + " 开始冒险";
 
         isNeedShowAction = true;
         isNeedShowLeave = true;
@@ -80,19 +80,7 @@ public class WorkManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        //Scroll View方法，因为Unity的BUG舍弃
-        /*
-        if (isFirstStart && updateNumber >= 2)
-        {
-            ScriptReader.GetInstance().JumpTo(0);
-            isFirstStart = false;
-        }
-        else
-        {
-            if (isFirstStart)
-                updateNumber++;
-        }
-        */
+
 	}
 
     public void addText(string text)
@@ -109,25 +97,12 @@ public class WorkManager : MonoBehaviour {
             int tmpInt = mainText.text.IndexOf('\n');
             mainText.text = mainText.text.Substring(tmpInt + 1);
         }
-        //Scroll View方法，因为Unity的BUG舍弃
-        /*
-        GameObject tmpText = Instantiate(Description) as GameObject;
-        tmpText.transform.SetParent(mainTextPanel.transform);
-        tmpText.transform.localPosition = new Vector3(10,textCurrentY + 160,0f);
-        tmpText.transform.localScale = new Vector3(1f,1f,1f);
-        tmpText.GetComponent<Text>().text = text;
 
-        textCurrentY -= (int)tmpText.GetComponent<RectTransform>().sizeDelta[1];
-        if (System.Math.Abs(textCurrentY) >= mainTextPanel.GetComponent<RectTransform>().sizeDelta[1])
-        {
-            mainTextPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(mainTextPanel.GetComponent<RectTransform>().sizeDelta[0], tmpText.GetComponent<RectTransform>().sizeDelta[1] + System.Math.Abs(tmpText.transform.position.y));
-        }
-        */
     }
 
     public void nextText()
     {
-        addText("测试");
+        //addText("测试");
         GetCurrentSelect();
     }
 
@@ -145,8 +120,10 @@ public class WorkManager : MonoBehaviour {
         if (currentSelect != -1)
         {
             //执行对应选项的跳转
+            /*
             string outputText = "执行" + currentSelectList[currentSelect].text + ",跳转至" + currentSelectList[currentSelect].to; 
             addText(outputText);
+            */
             ScriptReader.GetInstance().JumpTo(currentSelectList[currentSelect].to);
         }
     }

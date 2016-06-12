@@ -32,11 +32,11 @@ public class ACnormal : ActionCommand {
     public new void Execute()
     {
         //第一阶段，判断是否有条件，如果有则直接略过此步到第二阶段
-        Debug.Log("requitement = " + requirement);
         if (requirement.CompareTo("null") != 0)
         {
             //存在条件
-            WorkManager.instance.addText("存在条件，条件为" + requirement +"，条件系数为0");
+            //WorkManager.instance.addText("存在条件，条件为" + requirement +"，条件系数为0");
+            Debug.Log("存在条件，条件为" + requirement +"，条件系数为0");
             //判断是否成功通过判定
             if (Judge() == false)
             {
@@ -59,6 +59,38 @@ public class ACnormal : ActionCommand {
 
     public bool Judge()
     {
-        return false;
+        //根据requirement的类型进行判断
+        switch (requirement)
+        {
+            case "leader":
+                //WorkManager.instance.addText("结合你相关技能成功率为" + (SystemController.GetInstance().getMainPlayer().skill.leader - requirementValue) + "%");
+                return rpgJudge(SystemController.GetInstance().getMainPlayer().skill.leader - requirementValue);
+                break;
+            case "fight":
+                return rpgJudge(SystemController.GetInstance().getMainPlayer().skill.fight - requirementValue);
+                break;
+            case "dex":
+                return rpgJudge(SystemController.GetInstance().getMainPlayer().skill.dex - requirementValue);
+                break;
+            case "unlock":
+                return rpgJudge(SystemController.GetInstance().getMainPlayer().skill.unlock - requirementValue);
+                break;
+            case "knowledge":
+                return rpgJudge(SystemController.GetInstance().getMainPlayer().skill.knowledge - requirementValue);
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+        
+    public bool rpgJudge(int value)
+    {
+        //使用传统的RPG点数判断方法
+        int randomValue = Random.Range(0, 100);
+        if (randomValue <= value)
+            return true;
+        else
+            return false;
     }
 }

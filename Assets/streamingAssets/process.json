@@ -14,7 +14,7 @@
 					"to" : 1
 				}
 				{
-					"text" : "寻找其它小路",
+					"text" : "寻找其它路",
 					"to" : 2
 				}
 				{
@@ -41,7 +41,25 @@
 			"number" : 2,
 			"requirement" : "null",
 			"requirement-value" : 0,
-			"true-text" : "你并没发现周围有小路",
+			"true-text" : "你发现大门右侧有一个小木门",
+			"false-text" : "",
+			"select" :
+			[
+				{
+					"text" : "从小木门进入",
+					"to" : 4
+				}
+				{
+					"text" : "返回",
+					"to" : 1
+				}
+			]
+		}
+		{
+			"number" : 3,
+			"requirement" : "null",
+			"requirement-value" : 0,
+			"true-text" : "你观望了一段时间后，突然眼前一片黑，黑暗吞噬了你。游戏结束",
 			"false-text" : "",
 			"select" :
 			[
@@ -52,16 +70,56 @@
 			]
 		}
 		{
-			"number" : 3,
+			"number" : 4,
 			"requirement" : "null",
 			"requirement-value" : 0,
-			"true-text" : "你回头发现原来的路不见了",
+			"true-text" : "你用力的推了推小木门，发现门是锁住的",
 			"false-text" : "",
 			"select" :
 			[
 				{
-					"text" : "重新来过",
+					"text" : "对小木门开锁",
+					"to" : 5
+				}
+				{
+					"text" : "返回",
 					"to" : 0
+				}
+			]
+		}
+		{
+			"number" : 5,
+			"requirement" : "unlock",
+			"requirement-value" : 0,
+			"true-text" : "你成功的打开了小木门。",
+			"false-text" : "啪！你的开锁器断开了。",
+			"select" :
+			[
+				{
+					"text" : "继续",
+					"to" : 6
+				}
+			]
+		}
+		{
+			"number" : 6,
+			"requirement" : "null",
+			"requirement-value" : 0,
+			"true-text" : "你进入了魔王城大厅，虽然周围的火把都是点亮的，但却没有见到有人影。前面有台阶，左右两边都有大门。",
+			"false-text" : "",
+			"select" :
+			[
+				{
+					"text" : "上台阶",
+					"to" : 7
+				}
+				{
+					"text" : "进入左边的大门",
+					"to" : 8
+				}
+				{
+					"text" : "进入右边的大门",
+					"to" : 9
 				}
 			]
 		}
